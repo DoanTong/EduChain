@@ -6,13 +6,21 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js --ignore src/metadata/"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.8.0",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "ethers": "^6.16.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.8.0",
+    "multer": "^2.0.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1",
+    "unzipper": "^0.12.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

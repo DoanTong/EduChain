@@ -1,0 +1,250 @@
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+.cert-page {
+  padding: 25px 30px;
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cert-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cert-header-title h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.cert-header-sub {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 6px;
+}
+
+.cert-header-stat {
+  text-align: right;
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.stat-value {
+  display: block;
+  font-size: 32px;
+  font-weight: 900;
+  color: #2563eb;
+  margin-top: 5px;
+}
+
+/* =========================================================
+   TOOLBAR (SEARCH BAR)
+========================================================= */
+.cert-toolbar {
+  margin-bottom: 20px;
+}
+
+.cert-search {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  max-width: 400px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+  transition: .2s;
+}
+
+.cert-search:hover {
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+}
+
+.cert-search input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+.empty-box {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 16px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 22px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+.cert-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  transform: translateY(0px);
+  transition: .25s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+}
+
+/* =========================================================
+   USER HEADER
+========================================================= */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-avatar {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+.card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.card-email {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* =========================================================
+   EXAM TAG
+========================================================= */
+.card-exam {
+  margin-top: 6px;
+}
+
+.exam-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   WALLET
+========================================================= */
+.card-wallet {
+  margin-top: 4px;
+}
+
+.wallet-label {
+  display: block;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.wallet-value {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 8px 10px;
+  border-radius: 8px;
+  word-break: break-all;
+}
+
+/* =========================================================
+   BUTTON - MINT
+========================================================= */
+.btn-mint {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: .25s;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+.btn-mint:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.btn-mint:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* SMALL LOADING SPIN IF YOU ADD ICON */
+.btn-mint svg {
+  animation: spin .9s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

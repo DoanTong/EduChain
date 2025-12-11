@@ -1,0 +1,721 @@
+.qe-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #eef2ff, #e5e7eb);
+  padding: 2rem 1rem 3rem;
+}
+
+.qe-header {
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.qe-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  background: #e5e7eb;
+  color: #374151;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.qe-back:hover {
+  background: #d1d5db;
+}
+
+.qe-title-wrap {
+  flex: 1;
+}
+
+.qe-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.qe-subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* layout 2 cột */
+.qe-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+}
+
+/* card chung */
+.qe-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+  padding: 1.25rem 1.4rem;
+}
+
+/* FORM */
+.qe-form h3,
+.qe-list h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.qe-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.qe-input,
+.qe-select {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid #d1d5db;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  outline: none;
+  background: #f9fafb;
+}
+
+.qe-input:focus,
+.qe-select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.3);
+  background: #ffffff;
+}
+
+.qe-select {
+  cursor: pointer;
+}
+
+.qe-btn-primary {
+  margin-top: 0.25rem;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qe-btn-primary:hover {
+  background: #4338ca;
+}
+
+/* LIST */
+.qe-empty {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #9ca3af;
+}
+
+.qe-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.qe-item {
+  border-radius: 0.8rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.9rem 0.9rem 0.8rem;
+  background: #f9fafb;
+}
+
+.qe-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.qe-item-index {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.qe-item-actions {
+  display: flex;
+  gap: 8px;
+}
+/* Nút sửa */
+.qe-btn-edit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  background: #a3a3a3;
+  color: #3a2e05;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.qe-btn-edit:hover {
+  background: #c8c8c3;
+}
+.qe-btn-delete {
+  border: none;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qe-btn-delete:hover {
+  background: #b91c1c;
+  color: #fff;
+}
+
+.qe-question-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 0.4rem;
+}
+
+/* OPTIONS */
+.qe-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.qe-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 0.6rem;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.qe-option.correct {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 500;
+}
+
+.qe-option-prefix {
+  font-weight: 600;
+}
+
+
+/* Khung chứa toàn bộ nhóm import */
+.qe-import-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Hàng 1: Excel + JSON */
+.import-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Hàng 2: Thêm câu hỏi ở giữa */
+.add-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+/* Style các nút import */
+.btn-import {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+/* Nhỏ lại */
+.small-btn {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+
+/* Excel button */
+.btn-import.excel {
+  background: #08a652;
+  color: #fff;
+}
+
+.btn-import.excel:hover {
+  background: #02ff63;
+}
+
+/* JSON button */
+.btn-import.json {
+  background: #868595;
+  color: #ffffff;
+}
+
+.btn-import.json:hover {
+  background: #4f4e69;
+}
+
+
+/* Overlay */
+.qe-json-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Card */
+.qe-json-card {
+  width: 420px;
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qe-json-card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Textarea */
+.qe-json-textarea {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  resize: none;
+  font-size: 14px;
+  outline: none;
+}
+
+.qe-json-textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+
+/* Button group */
+.qe-json-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Buttons */
+.qe-btn-save {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qe-btn-save:hover {
+  background: #4338ca;
+}
+
+.qe-btn-cancel {
+  background: #e5e7eb;
+  color: #374151;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.qe-btn-cancel:hover {
+  background: #d1d5db;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .qe-layout {
+    grid-template-columns: 1fr;
+  }
+}
+/* ============================
+   LAYOUT CHUNG
+============================ */
+.qe-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 40px;
+  background: #f8fafc;
+}
+
+.qe-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.qe-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.qe-title {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.qe-subtitle {
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* ============================
+   LAYOUT 2 CỘT
+============================ */
+.qe-layout {
+  display: grid;
+  grid-template-columns: 420px auto;
+  gap: 25px;
+}
+
+/* ============================
+   CARD CHUNG
+============================ */
+.qe-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ============================
+   FORM EDIT CÂU HỎI
+============================ */
+.qe-label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  display: block;
+}
+
+.qe-input,
+.qe-select,
+.qe-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.qe-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.qe-btn-primary {
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qe-btn-primary:hover {
+  background: #2563eb;
+}
+
+/* ============================
+   DANH SÁCH CÂU HỎI
+============================ */
+.qe-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qe-item {
+  padding: 16px;
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.qe-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qe-item-index {
+  font-weight: 700;
+}
+
+.qe-item-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.qe-btn-edit,
+.qe-btn-delete {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.qe-btn-edit {
+  background: #bfdbfe;
+}
+
+.qe-btn-delete {
+  background: #fecaca;
+}
+
+.qe-question-text {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+/* ============================
+   OPTIONS
+============================ */
+.qe-options {
+  list-style: none;
+  padding: 0;
+}
+
+.qe-option {
+  padding: 8px 12px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  display: flex;
+  gap: 6px;
+}
+
+.qe-option.correct {
+  background: #bbf7d0;
+}
+
+/* ============================
+   IMPORT TOOLS (Excel & JSON)
+============================ */
+.qe-import-group {
+  margin-top: 15px;
+}
+
+.import-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.btn-import {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.small-btn.excel {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.small-btn.json {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+/* ============================
+   JSON MODAL
+============================ */
+.qe-json-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qe-json-card {
+  background: white;
+  padding: 20px;
+  width: 500px;
+  border-radius: 12px;
+}
+
+.qe-json-textarea {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #94a3b8;
+}
+
+.qe-json-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.qe-btn-cancel,
+.qe-btn-save {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.qe-btn-cancel {
+  background: #e2e8f0;
+}
+
+.qe-btn-save {
+  background: #4ade80;
+}
+
+/* ============================
+   IMAGE PREVIEW (Part 1)
+============================ */
+.qe-image-preview {
+  width: 100%;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.qe-image-preview.small {
+  width: 200px;
+}
+
+/* ============================
+   AUDIO PLAYER
+============================ */
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ============================
+   PASSAGE LONG TEXT (Part 6–7)
+============================ */
+.qe-passage-box {
+  width: 100%;
+  min-height: 160px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ============================
+   GROUP BOX (Part3,4,6,7)
+============================ */
+.qe-group {
+  padding: 16px;
+  background: #eef2ff;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.qe-group-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 900px) {
+  .qe-layout {
+    grid-template-columns: 1fr;
+  }
+}

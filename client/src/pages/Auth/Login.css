@@ -11,7 +11,7 @@ section {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -229,7 +229,7 @@ section .girl {
     transform: translateX(20px) rotate(225deg);
   }
 }
-html, body {
-  height: 100%;
+.no-scroll {
+  height: 100vh;
   overflow: hidden;
 }

@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 
-const resultSchema = new mongoose.Schema({
-  examId: { type: mongoose.Schema.Types.ObjectId, ref: "Exam", required: true },
-  userName: String,
-  email: String,
+const ResultSchema = new mongoose.Schema({
+  examId: { type: mongoose.Schema.Types.ObjectId, ref: "Exam" },
+  fullName: String,
   walletAddress: String,
   score: Number,
-  passScore: Number,
   metadataUri: String,
   contentHash: String,
-});
+  createdAt: { type: Date, default: Date.now }
+},
+{ timestamps: true }
+);
 
-export default mongoose.model("Result", resultSchema);
+
+export default mongoose.model("Result", ResultSchema);

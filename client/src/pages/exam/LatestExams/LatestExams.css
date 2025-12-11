@@ -1,0 +1,153 @@
+/* PAGE BACKGROUND - smooth gradient */
+.page-content {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  animation: fadeIn 0.6s ease;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================== */
+/* TITLE */
+/* ========================== */
+.title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 20px;
+  animation: fadeIn 0.8s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ========================== */
+/* GRID */
+/* ========================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 26px;
+  animation: fadeIn 1s ease;
+}
+
+/* ========================== */
+/* CARDS ULTRA NICE */
+/* ========================== */
+.session-card {
+  background: rgba(255, 255, 255, 0.66);
+  padding: 22px;
+  border-radius: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.05);
+  transition: 0.35s ease;
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* SOFT NEON BORDER ON HOVER */
+.session-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(30, 64, 175, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+/* HOVER LIGHT EFFECT */
+.session-card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 60%);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.session-card:hover::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ========================== */
+/* TEXT */
+/* ========================== */
+.session-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.session-card p {
+  color: #475569;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* ========================== */
+/* BUTTON */
+/* ========================== */
+
+.btn {
+  margin-top: 14px;
+  display: inline-flex;
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+  align-items: center;
+  gap: 6px;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(29, 78, 216, 0.35);
+}
+
+/* ========================== */
+/* LOADING & EMPTY */
+/* ========================== */
+.loading,
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* FLOAT-IN ANIMATION FOR ITEMS */
+.session-card {
+  animation: floatIn 0.7s ease;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* LIGHT TILT EFFECT */
+.session-card:hover {
+  transform: translateY(-6px) scale(1.02) rotateX(3deg);
+}

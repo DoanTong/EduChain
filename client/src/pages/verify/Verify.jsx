@@ -1,97 +1,115 @@
-import React, { useState } from "react";
-import { ethers } from "ethers";
-import abi from "../../blockchain/contractABI.json";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import API from "../../api/http";
 import "./Verify.css";
-import { toast } from "react-toastify";
-import Navbar from "../../components/topbar/Navbar.jsx";
+import logo from "../../assets/logo-educhain.png";
+export default function Verify() {
+  const { contentHash } = useParams();
+  const [cert, setCert] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    loadCertificate();
+  }, []);
 
-const CONTRACT_ADDR = import.meta.env.VITE_CONTRACT_ADDR;
-
-function Verify() {
-  const [tokenId, setTokenId] = useState("");
-  const [owner, setOwner] = useState("");
-  const [hash, setHash] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const verifyCert = async () => {
-    if (!window.ethereum) {
-      toast.error("⚠️ Cần cài MetaMask để tra cứu chứng chỉ!");
-      return;
-    }
-
+  const loadCertificate = async () => {
     try {
-      setLoading(true);
-      setOwner("");
-      setHash("");
-
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const contract = new ethers.Contract(CONTRACT_ADDR, abi, provider);
-
-      const ownerAddr = await contract.ownerOf(tokenId);
-      const contentHash = await contract.contentHash(tokenId);
-
-      setOwner(ownerAddr);
-      setHash(contentHash);
-      toast.success("✅ Tra cứu thành công! Chứng chỉ hợp lệ.");
+      const res = await API.get(`/api/certificates/verify/${contentHash}`);
+      setCert(res.data.data);
     } catch (err) {
-      console.error("❌ Lỗi tra cứu:", err);
-      toast.error("Không tìm thấy chứng chỉ hợp lệ hoặc tokenId không tồn tại!");
+      console.error("Verify error:", err);
     } finally {
       setLoading(false);
     }
   };
 
+  if (loading)
+    return <div className="vf-loading">Đang tải chứng chỉ…</div>;
+
+  if (!cert)
+    return <div className="vf-error">❌ Không tìm thấy chứng chỉ!</div>;
+
   return (
-    <div className="verify-page">
-      <Navbar /> {/* ✅ navbar cố định trên cùng */}
+    <div className="vf-wrapper">
 
-      <div className="verify-container">
-        <div className="verify-card">
-          <h1 className="verify-title">🔍 Tra cứu chứng chỉ Blockchain</h1>
-          <p className="verify-subtitle">
-            Nhập mã Token ID để xác minh chứng chỉ trên chuỗi khối
-          </p>
+      <div className="vf-card">
 
-          <div className="verify-form">
-            <input
-              value={tokenId}
-              onChange={(e) => setTokenId(e.target.value)}
-              placeholder="Nhập tokenId..."
-              className="verify-input"
-            />
-            <button
-              onClick={verifyCert}
-              className={`verify-btn ${loading ? "loading" : ""}`}
-              disabled={loading || !tokenId}
+        {/* HEADER */}
+        <div className="vf-header">
+          <img src={logo} className="vf-logo" />
+          <div>
+            <h1>EDUCHAIN CERTIFICATE</h1>
+            <p className="vf-sub">Official TOEIC Blockchain Credential</p>
+          </div>
+        </div>
+
+        <div className="vf-body">
+
+          {/* LEFT SIDE — Student Info */}
+          <div className="vf-left">
+            <img src={cert.avatar} className="vf-avatar" />
+
+            <h2 className="vf-name">{cert.studentName}</h2>
+            <p className="vf-email">{cert.email}</p>
+
+            <div className="vf-info">
+              <p><strong>Bài thi:</strong> {cert.examTitle}</p>
+              <p><strong>Tổng điểm:</strong> {cert.score}</p>
+              <p>
+                <strong>Accuracy:</strong>
+                <span className="vf-green"> {cert.accuracy}%</span>
+              </p>
+            </div>
+
+            <a
+              href={`https://sepolia.etherscan.io/tx/${cert.txHash}`}
+              target="_blank"
+              className="vf-eth-btn"
             >
-              {loading ? "⏳ Đang tra cứu..." : "Kiểm tra chứng chỉ"}
-            </button>
+              Xem giao dịch trên Ethereum
+            </a>
           </div>
 
-          {owner && (
-            <div className="verify-result">
-              <h3>✅ Chứng chỉ hợp lệ</h3>
-              <p><strong>Chủ sở hữu:</strong></p>
-              <p className="verify-address">{owner}</p>
+          {/* RIGHT SIDE — QR + Blockchain */}
+         <div className="vf-right">
+  <h3>Blockchain Verification</h3>
 
-              <p><strong>Content Hash:</strong></p>
-              <p className="verify-hash">{hash}</p>
+  <div className="vf-info-line">
+    <span className="vf-info-label">Network</span>
+    <span className="vf-info-value">Ethereum Sepolia</span>
+  </div>
 
-              <a
-                href={`https://sepolia.etherscan.io/token/${CONTRACT_ADDR}?a=${tokenId}`}
-                target="_blank"
-                rel="noreferrer"
-                className="etherscan-link"
-              >
-                🔗 Xem trên Etherscan
-              </a>
-            </div>
-          )}
+  <div className="vf-info-line">
+    <span className="vf-info-label">Contract</span>
+    <span className="vf-info-value">{cert.contract?.slice(0, 12)}N/A</span>
+  </div>
+
+  <div className="vf-info-line">
+    <span className="vf-info-label">Owner</span>
+    <span className="vf-info-value">{cert.studentWallet?.slice(0, 10)}N/A</span>
+  </div>
+
+  <div className="vf-info-line">
+    <span className="vf-info-label">Token ID</span>
+    <span className="vf-info-value">#{cert.tokenId}</span>
+  </div>
+
+  <div className="vf-info-line">
+    <span className="vf-info-label">Content Hash</span>
+    <span className="vf-info-value">{cert.contentHash}</span>
+  </div>
+
+  <div className="vf-info-line">
+    <span className="vf-info-label">Tx Hash</span>
+    <span className="vf-info-value">{cert.txHash?.slice(0, 12)}...</span>
+  </div>
+</div>
+
+
         </div>
+
       </div>
+
     </div>
   );
 }
-
-export default Verify;

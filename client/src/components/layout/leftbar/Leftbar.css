@@ -1,0 +1,202 @@
+.leftbar {
+  width: 250px;
+  height: 100vh;
+  background: #1d263a;
+  color: #e2e8f0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.25s ease;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  z-index: 50;
+}
+
+/* Khi thu gọn */
+.leftbar.collapsed {
+  width: 70px;
+  padding: 20px 10px;
+}
+
+/* Logo & nút thu gọn */
+.leftbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.collapse-btn {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: 0.2s;
+}
+
+.collapse-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.leftbar-logo {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Menu */
+.leftbar-menu {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leftbar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #cbd5e1;
+  border-radius: 10px;
+  transition: 0.2s ease;
+}
+
+.leftbar-item:hover {
+  background: rgba(255,255,255,0.10);
+  transform: translateX(4px);
+  color: white;
+}
+
+.leftbar-item.active {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Thu gọn: chỉ icon */
+.leftbar.collapsed .leftbar-item span {
+  display: none;
+}
+
+.leftbar.collapsed .leftbar-item {
+  justify-content: center;
+}
+
+/* Footer */
+.leftbar-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px;
+}
+
+.leftbar-logout {
+  width: 100%;
+  background: #ef4444;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.leftbar-logout:hover {
+  background: #dc2626;
+}
+
+/* Thu gọn logout */
+.leftbar.collapsed .leftbar-logout {
+  justify-content: center;
+}
+.leftbar.collapsed .leftbar-logout span {
+  display: none;
+}
+.leftbar-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+
+}
+
+.leftbar-logout,
+.leftbar-login-btn {
+  width: 100%;
+  padding: 10px 14px;
+  background: #ef4444;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.leftbar-login-btn {
+  background: #3b82f6;
+}
+
+.leftbar-logout:hover {
+  background: #dc2626;
+}
+
+.leftbar-login-btn:hover {
+  background: #2563eb;
+}
+
+.leftbar.collapsed .leftbar-login-btn,
+.leftbar.collapsed .leftbar-logout {
+  padding: 10px;
+  justify-content: center;
+}
+.nav-group {
+  width: 100%;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background: #f3f4f6;
+}
+
+.nav-item .nav-arrow {
+  margin-left: auto;
+  display: flex;
+}
+
+.submenu {
+  margin-left: 36px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.submenu .nav-item {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-left: 2px solid #d1d5db;
+}

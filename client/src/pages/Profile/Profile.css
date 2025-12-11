@@ -1,0 +1,257 @@
+/* ================= TOPBAR ================= */
+.upro-wrapper {
+  min-height: 100vh;
+  background: #eef2f8;
+}
+
+.upro-topbar {
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.upro-topbar .left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.top-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.top-btn:hover {
+  background: #e2e8f0;
+}
+
+.upro-topbar .right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.top-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.logout-btn {
+  background: #ef4444;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ============== PAGE WRAPPER ============== */
+.upro-page {
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ============== CARD ============== */
+.upro-card {
+  width: 100%;
+  max-width: 950px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+/* ============== COVER ============== */
+.upro-cover {
+  height: 170px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  position: relative;
+}
+
+.upro-cover-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+/* HEADER BLOCK */
+.upro-header {
+  position: absolute;
+  bottom: -55px;
+  left: 40px;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+/* ============== AVATAR ============== */
+.upro-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  background: #e2e8f0;
+  position: relative;
+}
+
+.upro-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upro-avatar-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* ============== INFO ============== */
+.upro-info {
+  color: #000000;
+  padding-bottom: 12px;
+  margin-bottom: -1.5rem
+}
+
+.upro-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.upro-email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  opacity: .9;
+}
+
+/* ============== BODY ============== */
+.upro-body {
+  margin-top: 70px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 850px) {
+  .upro-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============== SECTION ============== */
+.upro-section {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 24px 22px;
+  border: 1px solid #e2e8f0;
+}
+
+/* ============== TITLES ============== */
+.upro-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 14px;
+}
+
+/* ============== INPUTS ============== */
+.upro-label {
+  font-size: .9rem;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.upro-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: .95rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 12px;
+}
+
+/* ============== BUTTONS ============== */
+.upro-btn {
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: .9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.purple { background: #4f46e5; }
+.green  { background: #22c55e; }
+.blue   { background: #2563eb; }
+.red    { background: #dc2626; }
+
+/* ============== WALLET BOX ============== */
+.upro-wallet {
+  border: 1px dashed #94a3b8;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upro-wallet.connected {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+/* ============== MISC ============== */
+.upro-divider {
+  border-bottom: 1px solid #e2e8f0;
+  margin: 18px 0;
+}
+
+.upro-note {
+  margin-top: 10px;
+  color: #64748b;
+  font-size: .85rem;
+}

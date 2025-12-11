@@ -28,14 +28,26 @@ router.post("/register", async (req, res) => {
 });
 
 // 🟢 Đăng nhập
+// 🟢 Đăng nhập
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
 
+    const user = await User.findOne({ email });
     if (!user || user.password !== password) {
       return res.status(401).json({ message: "Sai thông tin đăng nhập" });
     }
+
+    // ✅ CHẶN LUÔN USER BỊ KHÓA (boolean true)
+    if (user.locked === true) {
+      return res
+        .status(403)
+        .json({ message: "Tài khoản đã bị khóa, vui lòng liên hệ admin." });
+    }
+
+    user.lastActive = Date.now();
+    user.isOnline = true;
+    await user.save();
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
@@ -49,5 +61,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Lỗi máy chủ" });
   }
 });
+
 
 export default router;

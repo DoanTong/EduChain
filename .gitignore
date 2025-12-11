@@ -28,6 +28,9 @@ dist/
 build/
 out/
 .cache/
+client/dist/
+client/build/
+server/dist/
 
 # ==========================
 # IDE / Editor files
@@ -38,7 +41,7 @@ out/
 Thumbs.db
 
 # ==========================
-# Hardhat / Truffle (Blockchain)
+# Hardhat / Blockchain
 # ==========================
 artifacts/
 cache/
@@ -57,14 +60,14 @@ test-results/
 test-output/
 
 # ==========================
-# Compiled smart contracts
-# ==========================
-*.abi
-*.bin
-
-# ==========================
 # OS files
 # ==========================
 *.swp
 *.swo
 *~
+
+# ==========================
+# Uploads (nếu có import ZIP)
+# ==========================
+uploads/
+*.zip

@@ -1,0 +1,122 @@
+.his-page {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.his-title {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* BANNER DECOR */
+.his-banner {
+  height: 90px;
+  width: 100%;
+  border-radius: 18px;
+  margin: 20px auto;
+  max-width: 1100px;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+  opacity: 0.9;
+}
+.his-banner.top { margin-bottom: 25px; }
+.his-banner.bottom { margin-top: 40px; }
+
+/* MAIN CAROUSEL WRAPPER */
+.his-wrap {
+  height: 480px;
+  position: relative;
+}
+
+.his-center {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 450px;
+  perspective: 1500px;
+  user-select: none;
+}
+
+/* ITEM */
+.his-item {
+  position: absolute;
+  width: 360px;
+  left: calc(50% - 180px);
+  transform-style: preserve-3d;
+
+  transform:
+    translateX(calc(var(--o) * 260px))
+    rotateY(calc(var(--o) * -32deg))
+    translateZ(calc(var(--abs) * -160px))
+    scale(calc(1 - var(--abs) * 0.15));
+
+  opacity: calc(1 - var(--abs) * 0.3);
+  filter: blur(calc(var(--abs) * 1.2px));
+  transition: transform .35s cubic-bezier(.22,.61,.36,1),
+              opacity .35s,
+              filter .35s;
+}
+
+.his-item:hover {
+  cursor: pointer;
+}
+
+/* CARD */
+.card {
+  background: #ffffff;
+  height: 420px;
+  padding: 22px;
+  border-radius: 22px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sid {
+  font-size: 14px;
+  opacity: .7;
+}
+
+.stats {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.good { color: #22c55e; }
+.bad { color: #ef4444; }
+
+.card-btn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  padding: 12px;
+  border-radius: 14px;
+  color: white;
+  text-decoration: none;
+  transition: .25s;
+}
+
+.card-btn:hover {
+  transform: scale(1.06);
+}

@@ -1,0 +1,242 @@
+/* ===========================
+   LAYOUT
+=========================== */
+.review-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  animation: fadeIn 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.review-header-card {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+  margin-bottom: 25px;
+}
+
+.review-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+}
+
+.review-sub {
+  margin-top: 5px;
+  color: #555;
+}
+
+/* ===========================
+   TOP ANALYTICS GRID
+=========================== */
+.top-analytics-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 2fr;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.summary-box,
+.chart-box {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.summary-title,
+.chart-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+/* SUMMARY GRID */
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+/* Mini Part Table */
+.part-mini-table {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 15px;
+}
+
+.mini-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 15px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+/* Colors */
+.text-green { color: #16a34a; font-weight: 600; }
+.text-red { color: #dc2626; font-weight: 600; }
+.text-blue { color: #2563eb; font-weight: 600; }
+
+/* ===========================
+   OFFICIAL MODE BOX
+=========================== */
+.official-box {
+  margin-top: 20px;
+  background: #fee2e2;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.official-box p {
+  margin: 15px 0;
+}
+
+.btn-back-home {
+  margin-top: 15px;
+  background: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.btn-back-home:hover {
+  opacity: 0.85;
+}
+
+/* ===========================
+   PART DETAILS
+=========================== */
+.review-section-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.review-part-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.review-part-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border 0.15s ease;
+}
+
+.review-part-card:hover {
+  border: 1px solid #bfdbfe;
+}
+
+/* HEADER OF EACH PART */
+.part-header {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.part-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* BODY OF EACH PART */
+.part-body {
+  background: #f8fafc;
+  padding: 18px 22px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* QUESTION ROW */
+.question-row {
+  margin-bottom: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #d1d5db;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-detail {
+  margin-left: 28px;
+  margin-top: 6px;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1000px) {
+  .top-analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .part-header h3 {
+    font-size: 16px;
+  }
+
+  .review-header-card {
+    padding: 20px;
+  }
+}
+.chart-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}

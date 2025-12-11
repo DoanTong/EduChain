@@ -1,0 +1,537 @@
+/* ===================================== */
+/* LAYOUT CHUNG */
+/* ===================================== */
+
+.adminhome-wrapper {
+  margin-left: 250px;
+  padding-top: 70px;
+  min-height: 100vh;
+  background: #f7f8fc;
+}
+
+.adminhome-content {
+  display: flex;
+  gap: 30px;
+  padding: 28px 36px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* LEFT / RIGHT SPLIT */
+
+.adminhome-left {
+  flex: 1 1 0;
+  min-width: 0; /* tránh chart bị tràn khi co layout */
+}
+
+.adminhome-right {
+  flex: 0 0 320px;
+}
+
+/* ===================================== */
+/* TIÊU ĐỀ + STAT CARDS */
+/* ===================================== */
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.stats-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  background: #ecebff;
+  padding: 12px;
+  border-radius: 14px;
+  color: #6c5ce7;
+}
+
+.stat-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.stat-card h3 {
+  margin-top: 3px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* ===================================== */
+/* KHU VỰC BIỂU ĐỒ */
+/* ===================================== */
+
+/* Container chung của chart */
+.chart-grid {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Row trên: Pie nhỏ + Bar lớn */
+.chart-row-top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;   /* Pie = 1 phần, Bar = 2 phần */
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* Thẻ chart chung */
+.chart-card {
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-card h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* Chart full width (Row 2) */
+.chart-card.full {
+  width: 100%;
+}
+
+/* Phần chứa chart (component bên trong) chiếm hết chiều cao còn lại */
+.chart-card > *:last-child {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ===================================== */
+/* RIGHT AREA - ONLINE USERS */
+/* ===================================== */
+
+.right-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.online-list {
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+/* Scrollbar đẹp hơn */
+.online-list::-webkit-scrollbar {
+  width: 6px;
+}
+.online-list::-webkit-scrollbar-thumb {
+  background: #d5d5ee;
+  border-radius: 4px;
+}
+
+.online-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.online-item:hover {
+  background: #f2f3ff;
+}
+
+.online-avatar-wrapper {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.online-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 11px;
+  height: 11px;
+  background: #37d55c;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.online-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.online-status {
+  font-size: 12px;
+  color: #777;
+}
+
+/* ===================================== */
+/* REVIEW PANEL MINI */
+/* ===================================== */
+
+.review-panel {
+  margin-top: 12px;
+  position: relative;
+  padding: 18px;
+  background: #fff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.08);
+  animation: fadeSlideAnim 0.25s ease;
+}
+
+@keyframes fadeSlideAnim {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.review-email {
+  font-size: 13px;
+  color: #777;
+}
+
+.review-bio {
+  font-size: 13px;
+  color: #555;
+  margin: 6px 0 10px;
+  line-height: 1.4;
+}
+
+.review-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.review-stats div {
+  width: 50%;
+  background: #f3f4ff;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+}
+
+.review-certs {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.review-certs h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.review-certs ul {
+  padding-left: 16px;
+  font-size: 13px;
+  color: #444;
+}
+
+.more-certs {
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+}
+
+.review-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  background: #6c5ce7;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.review-btn.second {
+  background: #eceaff;
+  color: #5a4ad6;
+}
+
+/* ===================================== */
+/* CHAT WIDGET */
+/* ===================================== */
+
+.chat-widget {
+  position: fixed;
+  right: -300px;
+  bottom: 20px;
+  width: 300px;
+  height: 66vh;
+  background: #fff;
+  border-radius: 18px 0 0 18px;
+  box-shadow: -6px 0 26px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.chat-widget.open {
+  right: 0;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.chat-h-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-toggle {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.chat-msg {
+  margin-bottom: 12px;
+}
+
+.bubble {
+  background: #6c5ce7;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 85%;
+}
+
+.time {
+  font-size: 11px;
+  margin-left: 4px;
+  color: #777;
+}
+
+.chat-inputbox {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.chat-inputbox input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.send-btn {
+  width: 42px;
+  height: 42px;
+  background: #6c5ce7;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===================================== */
+/* RESPONSIVE */
+/* ===================================== */
+
+@media (max-width: 1200px) {
+  .stats-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .adminhome-wrapper {
+    margin-left: 0;
+  }
+
+  .adminhome-content {
+    flex-direction: column;
+  }
+
+  .adminhome-right {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .chart-row-top {
+    grid-template-columns: 1fr;
+  }
+}
+/* PieChart được ưu tiên rộng hơn trong 1fr */
+.pie-card {
+  min-height: 350px;       /* card cao hơn */
+  display: flex;
+  flex-direction: column;
+}
+
+.pie-card .recharts-responsive-container {
+  height: 280px !important;
+}
+/* ============================================
+   FORCE SCROLL FOR ONLINE LIST
+============================================ */
+.adminhome-right {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px); /* vừa với chiều cao màn hình */
+  overflow: hidden;
+}
+
+.online-list {
+  flex: 1;
+  overflow-y: auto !important;
+  padding-right: 6px;
+}
+
+.online-list.scrollable {
+  max-height: none !important;
+  overflow-y: auto !important;
+}
+
+/* Custom scrollbar */
+.online-list::-webkit-scrollbar {
+  width: 6px;
+}
+.online-list::-webkit-scrollbar-thumb {
+  background: #c6c6c6;
+  border-radius: 4px;
+}
+.online-list::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5;
+}
+
+/* ============================================
+   ONLINE ITEM STYLES
+============================================ */
+.online-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.online-item:hover {
+  background: #f3f4f6;
+}
+
+.online-avatar-wrapper {
+  position: relative;
+  width: 45px;
+  height: 45px;
+}
+
+.online-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.online-dot,
+.offline-dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.online-dot {
+  background: #4ade80; /* xanh */
+}
+.offline-dot {
+  background: #9ca3af; /* xám */
+}
+.review-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: #e5e7eb;
+  border: none;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.review-close:hover {
+  background: #d1d5db;
+}

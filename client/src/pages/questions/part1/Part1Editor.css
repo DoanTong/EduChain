@@ -1,0 +1,408 @@
+/* ========== CONTAINER ========== */
+.part1-container {
+  padding: 25px;
+  max-width: 900px;
+  margin: auto;
+  animation: fadeIn 0.4s ease;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+/* ========== UPLOAD SECTION ========== */
+.upload-section {
+  display: flex;
+  gap: 35px;
+  align-items: flex-start;
+}
+
+.image-box,
+.audio-box {
+  flex: 1;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.label {
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.preview-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+/* ========== AUDIO ROWS ========== */
+.toeic-row {
+  display: grid;
+  grid-template-columns: 30px 140px 1fr;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.letter {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Upload Button Style */
+.upload-btn {
+  background: #f3f6ff;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid #b9c8ff;
+  cursor: pointer;
+  transition: 0.25s;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #1a3bb3;
+}
+
+.upload-btn:hover {
+  background: #e4ecff;
+}
+
+.uploaded {
+  background: #e8ffe8;
+  border-color: #6ac06a;
+  color: #267326;
+  font-weight: 600;
+}
+
+.audio-small {
+  height: 32px;
+  width: 180px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+
+/* ========== ANSWER SELECT ========== */
+.answer-box {
+  margin-top: 25px;
+  padding: 12px 5px;
+}
+
+.answer-row {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* SAVE BUTTON */
+.btn-save {
+  margin-top: 25px;
+  padding: 12px 35px;
+  font-size: 17px;
+  background: linear-gradient(90deg, #007bff, #0061d5);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-save:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+
+/* ========== QUESTION LIST ========== */
+.q-item {
+  padding: 18px;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 14px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 1px solid #ececec;
+}
+
+.q-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* AUDIOS LIST */
+.q-audios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* CORRECT ANSWER */
+.correct-answer {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0b7a0b;
+}
+
+
+/* ========== DELETE BUTTON ========== */
+.delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background: #ffe3e3;
+  border: 1px solid #ff9c9c;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.delete-btn:hover {
+  background: #ffcdcd;
+  border-color: #ff7070;
+}
+
+
+/* ========== ANIMATION ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hidden {
+  display: none;
+}
+
+/* Container import */
+.import-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 25px 0;
+}
+
+/* Nút Import Excel (nhỏ – bo góc – màu nhạt) */
+.btn-import {
+ display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid #d0e2ff;
+  background: linear-gradient(to right, #e0edff, #f5f7ff);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  color: #1e293b;
+}
+
+.btn-import:hover {
+  background: #e0e7ff;
+}
+
+/* Small style */
+.small-btn {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Excel style (xanh nhạt) */
+.btn-import.excel {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+  color: #0369a1;
+}
+
+.btn-import.excel:hover {
+  background: #e0f2fe;
+}
+
+/* Nút Bắt đầu Import */
+.btn-start-import {
+  background: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-start-import:hover {
+  background: #1d4ed8;
+}
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+
+.spinner {
+  width: 55px;
+  height: 55px;
+  border: 5px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.q-number {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* GRID 2 CỘT */
+.part1-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* UPLOAD BOX */
+.upload-box {
+  border: 2px dashed #cbd5e1;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s;
+  display: block;
+}
+
+.upload-box:hover {
+  background: #f8fafc;
+  border-color: #93c5fd;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-text {
+  font-size: 16px;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* PREVIEW IMG */
+.preview-img {
+  margin-top: 15px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* AUDIO ROW */
+.audio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.audio-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.audio-letter {
+  font-weight: bold;
+  width: 20px;
+}
+
+/* AUDIO BUTTON */
+.audio-btn {
+  background: #eef6ff;
+  padding: 7px 14px;
+  border-radius: 10px;
+  color: #2563eb;
+  border: 1px solid #cbdffb;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: 500;
+}
+
+.audio-btn:hover {
+  background: #dceeff;
+}
+
+.audio-btn input {
+  display: none;
+}
+
+.audio-btn.uploaded {
+  background: #dcfce7;
+  border-color: #4ade80;
+  color: #15803d;
+}
+
+/* AUDIO PREVIEW */
+.audio-preview {
+  width: 130px;
+}
+
+/* ANSWER SELECT */
+.answer-select p {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.answer-options {
+  display: flex;
+  gap: 14px;
+}
+
+.answer-option {
+  font-size: 16px;
+  gap: 6px;
+  align-items: center;
+  display: flex;
+}

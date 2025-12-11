@@ -1,0 +1,44 @@
+{
+  "name": "EduChain Certificate - Kì Thi Toeic 2025",
+  "description": "Certificate for the exam \"Kì Thi Toeic 2025\", awarded to Thai Son.",
+  "image": "http://localhost:4000/certificate-templates/toeic-default.png",
+  "external_url": "https://educhain.com/certificate/result-69398e2804b722e01ed2391e",
+  "attributes": [
+    {
+      "trait_type": "Student",
+      "value": "Thai Son"
+    },
+    {
+      "trait_type": "Email",
+      "value": "sondoanthai1@gmail.com"
+    },
+    {
+      "trait_type": "Wallet",
+      "value": "0xf43e61586af7b4332a4ac08dc5f43620535cbacb"
+    },
+    {
+      "trait_type": "Avatar",
+      "value": "http://localhost:4000/uploads/avatars/avatar_69303bac4595101177fc6653.jpg"
+    },
+    {
+      "trait_type": "Exam",
+      "value": "Kì Thi Toeic 2025"
+    },
+    {
+      "trait_type": "Accuracy",
+      "value": "66.7%"
+    },
+    {
+      "trait_type": "Score",
+      "value": "66.7"
+    },
+    {
+      "trait_type": "QR",
+      "value": "data:image/png;base64,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"
+    },
+    {
+      "trait_type": "ContentHash",
+      "value": "result-69398e2804b722e01ed2391e"
+    }
+  ]
+}

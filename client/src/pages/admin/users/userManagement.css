@@ -1,0 +1,202 @@
+/* =========================================
+   CONTAINER
+========================================= */
+.um-container {
+  padding: 30px 40px;
+}
+
+/* HEADER */
+.um-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.um-back-btn {
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.um-back-btn:hover {
+  background: #e5e7eb;
+}
+
+.um-title {
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+.um-controls {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+.um-search {
+  position: relative;
+  flex: 1;
+}
+
+.um-search input {
+  width: 100%;
+  padding: 12px 40px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  transition: 0.2s;
+}
+.um-search input:focus {
+  border-color: #3b82f6;
+}
+
+.um-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+}
+
+/* FILTER */
+.um-filter {
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: white;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+.um-table-wrapper {
+  margin-top: 24px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.um-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.um-table th {
+  background: #f9fafb;
+  padding: 16px;
+  font-size: 15px;
+  color: #6b7280;
+  font-weight: 600;
+  text-align: left;
+}
+
+.um-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 15px;
+}
+
+/* =========================================
+   STATUS BADGE
+========================================= */
+.um-badge {
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.um-green {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.um-red {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* =========================================
+   ACTION BUTTONS — FIXED
+========================================= */
+.um-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.um-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* NO SCALE — FIX SHIFTING */
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.um-btn:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.18);
+}
+
+/* COLORS */
+.um-lock { background: #d97706; }
+.um-reset { background: #2563eb; }
+.um-delete { background: #dc2626; }
+
+/* =========================================
+   TOOLTIP — FIXED
+========================================= */
+.um-tip-wrap {
+  position: relative;
+}
+
+.um-tip {
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  background: #111;
+  color: white;
+  font-size: 12px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+
+  transition: opacity 0.22s ease, top 0.22s ease;
+}
+
+.um-tip-wrap:hover .um-tip {
+  opacity: 1;
+  top: -55px;
+}
+
+/* FADE IN ROWS */
+.um-fade {
+  animation: umFadeIn 0.2s ease;
+}
+@keyframes umFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

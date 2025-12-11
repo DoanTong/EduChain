@@ -5,3 +5,191 @@
 body {
   @apply bg-gray-50 text-gray-800;
 }
+.page-content {
+  padding-top: 88px !important;
+  transition: margin-left 0.25s ease, padding-top 0.2s ease;
+}
+/* ===========================
+   HOME – SESSION ITEM CARD
+   =========================== */
+
+.home-session-card {
+  position: relative;
+  padding: 16px 18px 14px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.12), transparent 55%),
+    #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition:
+    transform 0.18s ease-out,
+    box-shadow 0.18s ease-out,
+    border-color 0.18s ease-out,
+    background 0.18s ease-out;
+  overflow: hidden;
+  animation: homeSessionPopIn 0.25s ease-out;
+}
+
+.home-session-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(59, 130, 246, 0.2),
+    transparent 60%
+  );
+  pointer-events: none;
+  transition: opacity 0.18s ease-out;
+}
+
+.home-session-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.14);
+  border-color: rgba(59, 130, 246, 0.7);
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.18), transparent 55%),
+    #ffffff;
+}
+
+.home-session-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes homeSessionPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Nội dung trong card */
+
+.home-session-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-session-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(191, 219, 254, 0.8);
+  font-size: 11px;
+  font-weight: 500;
+  color: #1d4ed8;
+}
+
+.home-session-eyebrow-text {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.home-session-title {
+  margin: 6px 0 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.home-session-meta {
+  margin: 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.home-session-meta-accent {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.home-session-status {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.home-session-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.home-session-status-published {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.6);
+}
+
+.home-session-status-practice {
+  background: rgba(59, 130, 246, 0.08);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+/* Nút "Bắt đầu thi" */
+
+.home-session-button {
+  margin-top: 10px;
+  align-self: stretch;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.5);
+  transition:
+    background 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    transform 0.08s ease-out;
+}
+
+.home-session-card:hover .home-session-button {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 38px rgba(37, 99, 235, 0.6);
+}
+
+.home-session-button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.55);
+}
+
+/* Responsive nhỏ hơn thì kéo full chiều ngang trong grid  */
+@media (max-width: 640px) {
+  .home-session-card {
+    padding: 14px 15px 12px;
+  }
+}

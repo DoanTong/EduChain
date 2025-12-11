@@ -1,0 +1,100 @@
+/* Container chính */
+.role-container {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Nút quay lại */
+.role-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #3b82f6;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+.role-back-btn:hover {
+  color: #1d4ed8;
+}
+
+/* Tiêu đề */
+.role-title {
+  font-size: 27px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Card chứa bảng */
+.role-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+/* Bảng */
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.role-table th {
+  text-align: left;
+  padding-bottom: 14px;
+  color: #6b7280;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.role-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+}
+
+/* Select quyền */
+.role-select {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+/* Nút lưu */
+.role-save-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.role-save-btn:hover {
+  background: #1e40af;
+}
+
+/* Nút reload */
+.role-reload-btn {
+  margin-top: 18px;
+  color: #6b7280;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.role-reload-btn:hover {
+  color: #111827;
+}

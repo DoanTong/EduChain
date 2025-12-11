@@ -1,0 +1,44 @@
+{
+  "name": "EduChain Certificate - Toeic",
+  "description": "Certificate for the exam \"Toeic\", awarded to son.",
+  "image": "http://localhost:4000/certificate-templates/toeic-default.png",
+  "external_url": "https://educhain.com/certificate/result-6939833004b722e01ed23911",
+  "attributes": [
+    {
+      "trait_type": "Student",
+      "value": "son"
+    },
+    {
+      "trait_type": "Email",
+      "value": "sondoanthai1@gmail.com"
+    },
+    {
+      "trait_type": "Wallet",
+      "value": "0xf43e61586af7b4332a4ac08dc5f43620535cbacb"
+    },
+    {
+      "trait_type": "Avatar",
+      "value": "http://localhost:4000/uploads/avatars/avatar_69303bac4595101177fc6653.jpg"
+    },
+    {
+      "trait_type": "Exam",
+      "value": "Toeic"
+    },
+    {
+      "trait_type": "Accuracy",
+      "value": "66.7%"
+    },
+    {
+      "trait_type": "Score",
+      "value": "66.7"
+    },
+    {
+      "trait_type": "QR",
+      "value": "data:image/png;base64,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"
+    },
+    {
+      "trait_type": "ContentHash",
+      "value": "result-6939833004b722e01ed23911"
+    }
+  ]
+}
