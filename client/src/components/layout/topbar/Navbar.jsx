@@ -17,6 +17,7 @@ import { useSearch } from "../../../context/SearchContext";
 import API from "../../../api/http.js";
 import "./Navbar.css";
 import { socket } from "../../../context/AuthContext";
+import { useTheme } from "../../../context/ThemeContext";
 
 function Navbar() {
   const { collapsed } = useSidebar();
@@ -28,7 +29,6 @@ function Navbar() {
 
   const exams = JSON.parse(localStorage.getItem("allExams") || "[]");
 
-  const [dark, setDark] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
   // ================================
@@ -38,7 +38,7 @@ function Navbar() {
   const [unread, setUnread] = useState(0);
   const [openNoti, setOpenNoti] = useState(false);
   const notiRef = useRef(null);
-
+  const { isDark, toggleTheme } = useTheme();
   // LOAD NOTIFICATIONS
   const loadNotifications = async () => {
     if (!user?._id) return;
@@ -224,8 +224,15 @@ function Navbar() {
         </div>
 
         {/* DARK MODE */}
-        <button className="icon-btn" onClick={() => setDark(!dark)}>
-          {dark ? <Sun size={18} /> : <Moon size={18} />}
+        <button
+          className="icon-btn"
+          onClick={() => {
+            console.log("toggleTheme click", { isDark });
+            toggleTheme();
+          }}
+          title="Toggle theme"
+        >
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
 
         {/* USER MENU */}

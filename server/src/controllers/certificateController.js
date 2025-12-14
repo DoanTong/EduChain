@@ -194,14 +194,18 @@ export const mintCertificate = async (req, res) => {
 
     // QR VERIFY LINK → ở dạng Base64 (không bị chặn bởi AdBlock)
 
-const qrBase64 = await QRCode.toDataURL(
-  `${process.env.FRONTEND_URL}/verify/result/${cert.contentHash}`
-);
+// const qrBase64 = await QRCode.toDataURL(
+//   `${process.env.FRONTEND_URL}/verify/result/${cert.contentHash}`
+// );
+
+const verifyUrl = new URL(
+  `/verify/result/${cert.contentHash}`,
+  process.env.FRONTEND_URL || "http://localhost:5173"
+).toString();
+
+const qrBase64 = await QRCode.toDataURL(verifyUrl);
 
 
-    // const qrBase64 = await QRCode.toDataURL(
-    //   `${process.env.FRONTEND_URL}/verify/${cert.contentHash}`
-    // );
 
     // ==========================================
     // 4) BUILD METADATA JSON
@@ -210,8 +214,7 @@ const qrBase64 = await QRCode.toDataURL(
       name: `EduChain Certificate - ${examTitle}`,
       description: `Certificate for the exam "${examTitle}", awarded to ${cert.user.name}.`,
       image: certImg,
-      external_url: `https://educhain.com/certificate/${cert.contentHash}`,
-
+      external_url: verifyUrl,
       attributes: [
         { trait_type: "Student", value: cert.user.name },
         { trait_type: "Email", value: cert.user.email },
@@ -321,6 +324,10 @@ export const verifyCertificate = async (req, res) => {
 
     // 2) Lấy kết quả bài thi để lấy điểm & accuracy
     const result = await SessionResult.findById(sessionResultId);
+    const verifyUrl = new URL(
+      `/verify/result/${contentHash}`,
+      process.env.FRONTEND_URL || "http://localhost:5173"
+    ).toString();
 
     return res.json({
       success: true,
@@ -336,7 +343,7 @@ export const verifyCertificate = async (req, res) => {
           : `https://ui-avatars.com/api/?name=${encodeURIComponent(cert.user.name)}`,
         tokenId: cert.tokenId,
         txHash: cert.txHash,
-        qr: cert.qrBase64, // nếu bạn lưu QR trong DB
+        verifyUrl,
         contentHash: cert.contentHash
       }
     });
