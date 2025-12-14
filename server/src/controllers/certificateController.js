@@ -307,11 +307,56 @@ export const getCertificates = async (req, res) => {
   }
 };
 
+// export const verifyCertificate = async (req, res) => {
+//   try {
+//     const { contentHash } = req.params;
+
+//     // 1) Tìm certificate theo contentHash
+//     const cert = await Certificate.findOne({ contentHash })
+//       .populate("user", "name email wallet avatar")
+//       .populate("examId", "title");
+
+//     if (!cert)
+//       return res.status(404).json({ success: false, message: "Certificate not found" });
+
+//     // Lấy sessionResultId từ contentHash
+//     const sessionResultId = contentHash.replace("result-", "");
+
+//     // 2) Lấy kết quả bài thi để lấy điểm & accuracy
+//     const result = await SessionResult.findById(sessionResultId);
+//     const verifyUrl = new URL(
+//       `/verify/result/${contentHash}`,
+//       process.env.FRONTEND_URL || "http://localhost:5173"
+//     ).toString();
+
+//     return res.json({
+//       success: true,
+//       data: {
+//         studentName: cert.user.name,
+//         email: cert.user.email,
+//         examTitle: cert.examId.title,
+//         score: result?.totalScore || 0,
+//         accuracy: result?.accuracy || 0,
+        
+//          avatar: cert.user.avatar
+//           ? `${process.env.API_BASE_URL}${cert.user.avatar}`
+//           : `https://ui-avatars.com/api/?name=${encodeURIComponent(cert.user.name)}`,
+//         tokenId: cert.tokenId,
+//         txHash: cert.txHash,
+//         verifyUrl,
+//         contentHash: cert.contentHash
+//       }
+//     });
+
+//   } catch (err) {
+//     console.error("verifyCertificate error:", err);
+//     res.status(500).json({ success: false });
+//   }
+// };
 export const verifyCertificate = async (req, res) => {
   try {
     const { contentHash } = req.params;
 
-    // 1) Tìm certificate theo contentHash
     const cert = await Certificate.findOne({ contentHash })
       .populate("user", "name email wallet avatar")
       .populate("examId", "title");
@@ -319,15 +364,32 @@ export const verifyCertificate = async (req, res) => {
     if (!cert)
       return res.status(404).json({ success: false, message: "Certificate not found" });
 
-    // Lấy sessionResultId từ contentHash
     const sessionResultId = contentHash.replace("result-", "");
-
-    // 2) Lấy kết quả bài thi để lấy điểm & accuracy
     const result = await SessionResult.findById(sessionResultId);
+
     const verifyUrl = new URL(
       `/verify/result/${contentHash}`,
       process.env.FRONTEND_URL || "http://localhost:5173"
     ).toString();
+
+    // ✅ normalize API base (đảm bảo có https://)
+    const apiBase = (process.env.API_BASE_URL || "http://localhost:4000").startsWith("http")
+      ? process.env.API_BASE_URL
+      : `https://${process.env.API_BASE_URL}`;
+
+    // ✅ normalize avatar url
+    let avatarUrl;
+    const rawAvatar = cert.user.avatar;
+
+    if (rawAvatar?.startsWith("http")) {
+      // Nếu DB lỡ lưu http://localhost... thì thay bằng domain thật
+      avatarUrl = rawAvatar.replace(/^http:\/\/localhost:\d+/, apiBase);
+    } else if (rawAvatar) {
+      // Nếu DB lưu dạng /uploads/...
+      avatarUrl = new URL(rawAvatar, apiBase).toString();
+    } else {
+      avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(cert.user.name)}`;
+    }
 
     return res.json({
       success: true,
@@ -337,17 +399,14 @@ export const verifyCertificate = async (req, res) => {
         examTitle: cert.examId.title,
         score: result?.totalScore || 0,
         accuracy: result?.accuracy || 0,
-        
-         avatar: cert.user.avatar
-          ? `${process.env.API_BASE_URL}${cert.user.avatar}`
-          : `https://ui-avatars.com/api/?name=${encodeURIComponent(cert.user.name)}`,
+
+        avatar: avatarUrl,
         tokenId: cert.tokenId,
         txHash: cert.txHash,
         verifyUrl,
         contentHash: cert.contentHash
       }
     });
-
   } catch (err) {
     console.error("verifyCertificate error:", err);
     res.status(500).json({ success: false });
