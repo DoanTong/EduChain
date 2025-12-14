@@ -5,7 +5,7 @@ import API from "../../../api/http";
 import Leftbar from "../../../components/layout/leftbar/Leftbar.jsx";
 import Navbar from "../../../components/layout/topbar/Navbar.jsx";
 
-import { Layers, BadgeCheck, Play } from "lucide-react";
+import { Layers, BadgeCheck, Play, Clock3, Puzzle } from "lucide-react";
 import { useSidebar } from "../../../context/SidebarContext";
 import { useNavigate } from "react-router-dom";
 
@@ -40,87 +40,136 @@ function LatestExams() {
 
       {/* MAIN CONTENT */}
       <div
-        className={`page-content transition-all duration-300 ${
+        className={`lex-page transition-all duration-300 ${
           collapsed ? "ml-[80px]" : "ml-[250px]"
         }`}
       >
-        <div className="pt-[88px] px-6 max-w-6xl mx-auto">
+        <div className="lex-inner">
+          {/* HERO */}
+          <div className="lex-hero">
+            <div className="lex-hero-top">
+              <div className="lex-hero-icon">
+                <Layers size={20} />
+              </div>
 
-          {/* ---------------- PAGE TITLE ---------------- */}
-          <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3 mb-6">
-            <Layers className="text-blue-600" /> Bài luyện tập mới nhất
-          </h1>
+              <div className="lex-hero-text">
+                <h1 className="lex-title">Bài luyện tập mới nhất</h1>
+                <p className="lex-subtitle">
+                  Chọn một session để bắt đầu làm bài (Practice Mode)
+                </p>
+              </div>
 
-          {/* ---------------- LOADING ---------------- */}
+              <div className="lex-pill">
+                <BadgeCheck size={16} />
+                Practice Library
+              </div>
+            </div>
+
+            <div className="lex-hero-divider" />
+
+            <div className="lex-hero-stats">
+              <div className="lex-stat">
+                <span className="lex-stat-k">Tổng session</span>
+                <span className="lex-stat-v">{sessions.length}</span>
+              </div>
+              <div className="lex-stat">
+                <span className="lex-stat-k">Trạng thái</span>
+                <span className={`lex-stat-v ${loading ? "is-wait" : "is-ok"}`}>
+                  {loading ? "Đang tải..." : "Sẵn sàng"}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* LOADING */}
           {loading && (
-            <div className="text-center text-slate-500 py-16 text-lg">
-              Đang tải danh sách bài luyện tập...
+            <div className="lex-loading">
+              <div className="lex-skeleton-grid">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className="lex-skeleton-card">
+                    <div className="lex-skel-line w-40" />
+                    <div className="lex-skel-line w-56" />
+                    <div className="lex-skel-line w-48" />
+                    <div className="lex-skel-row">
+                      <div className="lex-skel-chip w-28" />
+                      <div className="lex-skel-chip w-28" />
+                    </div>
+                    <div className="lex-skel-btn" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="lex-loading-text">
+                Đang tải danh sách bài luyện tập...
+              </div>
             </div>
           )}
 
-          {/* ---------------- EMPTY ---------------- */}
+          {/* EMPTY */}
           {!loading && sessions.length === 0 && (
-            <div className="text-center text-slate-500 py-16 text-lg">
-              Không tìm thấy bài luyện tập nào.
+            <div className="lex-empty">
+              <div className="lex-empty-badge">Không có dữ liệu</div>
+              <p className="lex-empty-text">Không tìm thấy bài luyện tập nào.</p>
             </div>
           )}
 
-          {/* ---------------- LIST ITEMS ---------------- */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {sessions.map((s) => (
-              <div
-                key={s._id}
-                className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition border border-slate-100 p-5 flex flex-col justify-between"
-              >
-                <div>
-                  {/* TAG */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <BadgeCheck className="text-blue-600" size={18} />
-                    <span className="text-sm text-blue-600 font-medium">
+          {/* LIST ITEMS */}
+          {!loading && sessions.length > 0 && (
+            <div className="lex-grid">
+              {sessions.map((s) => (
+                <div key={s._id} className="lex-card">
+                  <div className="lex-card-glow" />
+
+                  <div className="lex-card-head">
+                    <div className="lex-badge">
+                      <BadgeCheck size={16} />
                       Practice Mode
-                    </span>
+                    </div>
                   </div>
 
-                  {/* TITLE */}
-                  <h3 className="text-xl font-semibold text-slate-800 mb-1 line-clamp-1">
+                  <h3 className="lex-card-title" title={s.title}>
                     {s.title}
                   </h3>
 
-                  {s.description && (
-                    <p className="text-slate-600 text-sm mb-3 line-clamp-2">
-                      {s.description}
+                  {s.description ? (
+                    <p className="lex-card-desc">{s.description}</p>
+                  ) : (
+                    <p className="lex-card-desc is-muted">
+                      Không có mô tả cho session này.
                     </p>
                   )}
 
-                  <p className="text-slate-600 text-sm">
-                    Số Part:{" "}
-                    <span className="font-medium text-purple-600">
-                      {s.parts.length}
-                    </span>
-                  </p>
+                  <div className="lex-meta">
+                    <div className="lex-meta-item">
+                      <Puzzle size={16} />
+                      <span className="lex-meta-k">Số Part</span>
+                      <span className="lex-meta-v">{s.parts?.length || 0}</span>
+                    </div>
 
-                  <p className="text-slate-600 text-sm">
-                    Thời lượng:{" "}
-                    <span className="font-medium text-green-600">
-                      {s.totalDuration || 0} phút
-                    </span>
-                  </p>
+                    <div className="lex-meta-item">
+                      <Clock3 size={16} />
+                      <span className="lex-meta-k">Thời lượng</span>
+                      <span className="lex-meta-v">
+                        {s.totalDuration || 0} phút
+                      </span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => navigate(`/exam-session/${s._id}`)}
+                    className="lex-action"
+                  >
+                    <Play size={18} />
+                    Bắt đầu luyện tập
+                    <span className="lex-action-shine" />
+                  </button>
                 </div>
-
-                {/* BUTTON */}
-                <button
-                  onClick={() => navigate(`/exam-session/${s._id}`)}
-                  className="mt-4 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl transition"
-                >
-                  <Play size={18} />
-                  Bắt đầu luyện tập
-                </button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* FOOTER */}
-          <footer className="text-center text-slate-400 text-sm py-8 mt-16">
+          <footer className="lex-footer">
             © 2025 EduChain — Danh sách bài luyện tập
           </footer>
         </div>

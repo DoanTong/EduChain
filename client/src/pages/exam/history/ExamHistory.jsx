@@ -4,7 +4,7 @@ import Navbar from "../../../components/layout/topbar/Navbar";
 import API from "../../../api/http";
 import "./ExamHistory.css";
 
-import { Play, CheckCircle, XCircle, Clock } from "lucide-react";
+import { Play, CheckCircle, XCircle, Clock, History } from "lucide-react";
 import { useSidebar } from "../../../context/SidebarContext";
 import { useAuth } from "../../../context/AuthContext";
 
@@ -17,40 +17,55 @@ export default function ExamHistory() {
 
   const wrapRef = useRef(null);
 
-  const clamp = (v) => Math.max(0, Math.min(sessions.length - 1, v));
+  // ✅ giữ hiệu ứng drag cũ nhưng ổn định hơn
+  const dragRef = useRef({ dragging: false, startX: 0 });
 
+  const clamp = (v) => Math.max(0, Math.min(sessions.length - 1, v));
   const goTo = (i) => setActiveIndex(clamp(i));
 
   const next = () => goTo(activeIndex + 1);
   const prev = () => goTo(activeIndex - 1);
 
   // Wheel scroll
-  const wheel = (e) => {
-    if (e.deltaY > 0) next();
-    else prev();
-  };
+const wheel = (e) => {
+  // chặn cuộn trang khi đang lướt trong carousel
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (e.deltaY > 0) next();
+  else prev();
+};
+
 
   // Drag
-  let dragging = false, startX = 0;
-
   const down = (e) => {
-    dragging = true;
-    startX = e.clientX;
+    dragRef.current.dragging = true;
+    dragRef.current.startX = e.clientX;
   };
 
   const move = (e) => {
-    if (!dragging) return;
-    const diff = e.clientX - startX;
-    if (diff > 80) { prev(); dragging = false; }
-    if (diff < -80) { next(); dragging = false; }
+    if (!dragRef.current.dragging) return;
+    const diff = e.clientX - dragRef.current.startX;
+
+    if (diff > 80) {
+      prev();
+      dragRef.current.dragging = false;
+    }
+    if (diff < -80) {
+      next();
+      dragRef.current.dragging = false;
+    }
   };
 
-  const up = () => (dragging = false);
+  const up = () => {
+    dragRef.current.dragging = false;
+  };
 
   useEffect(() => {
     const w = wrapRef.current;
     if (!w) return;
-    w.addEventListener("wheel", wheel, { passive: true });
+
+    w.addEventListener("wheel", wheel, { passive: false });
     w.addEventListener("mousedown", down);
     w.addEventListener("mousemove", move);
     w.addEventListener("mouseup", up);
@@ -75,7 +90,7 @@ export default function ExamHistory() {
     const list = res.data?.data || [];
 
     const cleaned = list
-      .filter(i => i.session)
+      .filter((i) => i.session)
       .map((i) => {
         const s = i.session;
         const d = i.durationSeconds || 0;
@@ -93,60 +108,146 @@ export default function ExamHistory() {
       });
 
     setSessions(cleaned);
+    setActiveIndex(0);
   };
 
   return (
     <>
-      <Leftbar/>
-      <Navbar/>
+      <Leftbar />
+      <Navbar />
 
-      <div className={`his-page ${collapsed ? "ml-[80px]" : "ml-[250px]"}`}>
+      <div className={`exh-page ${collapsed ? "ml-[80px]" : "ml-[250px]"}`}>
+        <div className="exh-inner">
+          {/* HERO */}
+          <div className="exh-hero">
+            <div className="exh-hero-left">
+              <div className="exh-hero-icon">
+                <History size={18} />
+              </div>
+              <div className="exh-hero-text">
+                <h1 className="exh-title">Kỳ thi bạn đã hoàn thành</h1>
+                <p className="exh-sub">
+                  Lăn chuột để chuyển card • Kéo ngang để lướt • Click để chọn
+                </p>
+              </div>
+            </div>
 
-        {/* Top banner */}
-        <div className="his-banner top"></div>
+            <div className="exh-hero-right">
+              <div className="exh-pill">
+                <span className="exh-pill-k">Tổng</span>
+                <span className="exh-pill-v">{sessions.length}</span>
+              </div>
 
-        <h1 className="his-title">Kỳ thi bạn đã hoàn thành</h1>
+              <div className="exh-pill is-active">
+                <span className="exh-pill-k">Đang chọn</span>
+                <span className="exh-pill-v">
+                  {sessions.length ? activeIndex + 1 : 0}/{sessions.length}
+                </span>
+              </div>
+            </div>
 
-        <div className="his-wrap" ref={wrapRef}>
-          <div className="his-center">
-            {sessions.map((s, i) => {
-              const off = i - activeIndex;
-              const abs = Math.abs(off);
-
-              return (
-                <div className="his-item"
-                  key={s.id}
-                  style={{
-                    "--o": off,
-                    "--abs": abs,
-                  }}
-                  onClick={() => goTo(i)}
-                >
-                  <div className="card">
-                    <h3 className="card-title">{s.title}</h3>
-                    <span className="sid">ID: {s.id}</span>
-
-                    <div className="stats">
-                      <p><CheckCircle className="good"/> Đúng: {s.correct}</p>
-                      <p><XCircle className="bad"/> Sai: {s.total - s.correct}</p>
-                      <p>🎯 {s.acc}% chính xác</p>
-                      <p>📝 Tổng: {s.total}</p>
-                      <p><Clock size={16}/> {s.time}</p>
-                    </div>
-
-                    <a className="card-btn" href={`/exam-session/${s.id}`}>
-                      <Play size={18}/> Xem lại kỳ thi
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="exh-hero-glow" />
           </div>
+
+          {/* EMPTY */}
+          {sessions.length === 0 && (
+            <div className="exh-empty">
+              <div className="exh-empty-badge">Chưa có lịch sử</div>
+              <p className="exh-empty-text">
+                Bạn chưa hoàn thành bài nào để hiển thị ở đây.
+              </p>
+            </div>
+          )}
+
+          {/* CAROUSEL */}
+          {sessions.length > 0 && (
+            <>
+              <div className="exh-banner exh-banner-top" />
+
+              <div className="exh-wrap" ref={wrapRef}>
+                <div className="exh-center">
+                  {sessions.map((s, i) => {
+                    const off = i - activeIndex;
+                    const abs = Math.abs(off);
+
+                    const wrong = Math.max(0, (s.total || 0) - (s.correct || 0));
+                    const accVal = Number(s.acc || 0);
+                    const accText = Number.isFinite(accVal)
+                      ? `${accVal.toFixed(1)}%`
+                      : "0.0%";
+
+                    return (
+                      <div
+                        className="exh-item"
+                        key={s.id}
+                        style={{
+                          "--o": off,
+                          "--abs": abs,
+                        }}
+                        onClick={() => goTo(i)}
+                      >
+                        <div className="exh-card">
+                          <div className="exh-card-top">
+                            <div className="exh-card-titlewrap">
+                              <h3 className="exh-card-title" title={s.title}>
+                                {s.title}
+                              </h3>
+                              <span className="exh-sid">ID: {s.id}</span>
+                            </div>
+
+                            <div className="exh-chip">
+                              <span className="exh-chip-dot" />
+                              Completed
+                            </div>
+                          </div>
+
+                          <div className="exh-stats">
+                            <p className="exh-stat">
+                              <CheckCircle className="exh-good" />
+                              Đúng: <b>{s.correct}</b>
+                            </p>
+
+                            <p className="exh-stat">
+                              <XCircle className="exh-bad" />
+                              Sai: <b>{wrong}</b>
+                            </p>
+
+                            <p className="exh-stat">
+                              🎯 Chính xác: <b className="exh-acc">{accText}</b>
+                            </p>
+
+                            <p className="exh-stat">
+                              📝 Tổng câu: <b>{s.total}</b>
+                            </p>
+
+                            <p className="exh-stat">
+                              <Clock size={16} className="exh-clock" />
+                              <span>{s.time}</span>
+                            </p>
+                          </div>
+
+                          <a className="exh-btn" href={`/exam-session/${s.id}`}>
+                            <Play size={18} />
+                            Xem lại kỳ thi
+                            <span className="exh-btn-shine" />
+                          </a>
+
+                          <div className="exh-card-glow" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="exh-banner exh-banner-bottom" />
+            </>
+          )}
+
+          <footer className="exh-footer">
+            © 2025 EduChain — Exam History
+          </footer>
         </div>
-
-        {/* Bottom banner */}
-        <div className="his-banner bottom"></div>
-
       </div>
     </>
   );

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Part1Editor from "../questions/part1/Part1Editor";
 import Part2Editor from "../questions/part2/Part2Editor";
 import Part3Editor from "../questions/part3/Part3Editor";
-import Part4Editor from "./Part4Editor";
+
 import Part5Editor from "./Part5Editor";
 import Part6Editor from "./Part6Editor";
 import Part7Editor from "./Part7Editor";
@@ -76,7 +76,7 @@ function QuestionEditor() {
       PartComponent = Part3Editor;
       break;
     case 4:
-      PartComponent = Part4Editor;
+      PartComponent = Part3Editor;
       break;
     case 5:
       PartComponent = Part5Editor;
