@@ -1,3 +1,7 @@
+/* =========================
+   VERIFY PAGE (RESPONSIVE)
+   ========================= */
+
 /* === Page Wrapper === */
 .vf-wrapper {
   min-height: 100vh;
@@ -15,8 +19,9 @@
   background: #fff;
   border-radius: 22px;
   padding: 40px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.6s ease;
+  overflow: hidden; /* chống tràn */
 }
 
 /* HEADER */
@@ -29,13 +34,15 @@
 
 .vf-logo {
   width: 75px;
+  flex: 0 0 auto;
 }
 
 .vf-header h1 {
   margin: 0;
   font-size: 26px;
   color: #1e3a8a;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.2px;
 }
 
 .vf-sub {
@@ -43,22 +50,23 @@
   color: #6b7280;
 }
 
-/* BODY LAYOUT */
+/* BODY LAYOUT (DESKTOP) */
 .vf-body {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
   gap: 32px;
+  align-items: start;
 }
 
 /* LEFT SIDE */
 .vf-left {
-  flex: 1.2;
+  min-width: 0;
 }
 
 .vf-avatar {
   width: 140px;
   height: 140px;
-  border-radius: 100%;
+  border-radius: 999px;
   object-fit: cover;
   border: 4px solid #3b82f6;
 }
@@ -66,7 +74,8 @@
 .vf-name {
   margin-top: 14px;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
+  color: #0f172a;
 }
 
 .vf-email {
@@ -77,11 +86,12 @@
 .vf-info p {
   font-size: 16px;
   margin: 6px 0;
+  color: #111827;
 }
 
 .vf-green {
   color: #10b981;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .vf-eth-btn {
@@ -100,45 +110,81 @@
   background: #1d4ed8;
 }
 
-/* RIGHT SIDE */
+/* RIGHT — Blockchain Verification Panel */
 .vf-right {
-  flex: 1;
-  background: #f4f6ff;
-  padding: 20px;
+  min-width: 0;
+  background: #f8faff;
+  padding: 24px;
   border-radius: 18px;
-  text-align: center;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.05);
+  text-align: left;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .vf-right h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin: 0 0 6px 0;
 }
 
-.vf-token, .vf-tx {
-  margin: 4px 0;
+/* Info lines */
+.vf-info-line {
   font-size: 14px;
-  color: #333;
+  padding: 8px 0;
+  color: #374151;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px dashed #cbd5e1;
 }
 
+.vf-info-label {
+  font-weight: 700;
+  color: #1e40af;
+  flex: 0 0 auto;
+}
+
+.vf-info-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  color: #111827;
+
+  /* CHỐNG TRÀN HASH TRÊN MOBILE */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: right;
+}
+
+/* QR styling (nếu có dùng) */
 .vf-qr {
   width: 160px;
-  margin: 16px auto;
-  border-radius: 8px;
+  height: 160px;
+  margin: 16px auto 8px;
   background: white;
-  padding: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.vf-sign-label {
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
 }
 
 .vf-sign {
   width: 70px;
-  opacity: 0.75;
-  margin-top: 10px;
-}
-
-.vf-sign-label {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #777;
+  opacity: 0.7;
+  display: block;
+  margin: 6px auto 0;
 }
 
 /* Loading & Error */
@@ -153,75 +199,98 @@
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* RIGHT — Blockchain Verification Panel */
-.vf-right {
-  flex: 1;
-  background: #f8faff;
-  padding: 24px;
-  border-radius: 18px;
-  text-align: left;
-  box-shadow: inset 0 0 18px rgba(0,0,0,0.06);
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.vf-right h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1e3a8a;
-  margin-bottom: 6px;
+/* =========================
+   RESPONSIVE BREAKPOINTS
+   ========================= */
+
+/* Tablet xuống 1 cột */
+@media (max-width: 900px) {
+  .vf-card {
+    padding: 28px;
+  }
+
+  .vf-body {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 }
 
-/* Info lines */
-.vf-info-line {
-  font-size: 14px;
-  padding: 6px 0;
-  color: #374151;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dashed #cbd5e1;
-}
+/* Mobile tối ưu spacing + căn giữa */
+@media (max-width: 520px) {
+  .vf-wrapper {
+    padding: 18px 12px;
+  }
 
-.vf-info-label {
-  font-weight: 600;
-  color: #1e40af;
-  font-size: 14px;
-}
+  .vf-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
 
-.vf-info-value {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 13px;
-  color: #111827;
-}
+  .vf-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
 
-/* QR styling */
-.vf-qr {
-  width: 160px;
-  height: 160px;
-  margin: 16px auto;
-  background: white;
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+  .vf-logo {
+    width: 62px;
+  }
 
-/* Signature */
-.vf-sign-label {
-  text-align: center;
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: -4px;
-}
+  .vf-header h1 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 
-/* Optional small signature image */
-.vf-sign {
-  width: 70px;
-  opacity: 0.7;
-  display: block;
-  margin: 4px auto -4px auto;
+  .vf-sub {
+    font-size: 13px;
+  }
+
+  .vf-left {
+    text-align: center;
+  }
+
+  .vf-avatar {
+    width: 104px;
+    height: 104px;
+  }
+
+  .vf-name {
+    font-size: 20px;
+  }
+
+  .vf-info p {
+    font-size: 14px;
+  }
+
+  .vf-eth-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .vf-right {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  /* Trên mobile: label + value xuống dòng cho dễ đọc */
+  .vf-info-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .vf-info-value {
+    text-align: left;
+  }
+
+  .vf-qr {
+    width: 140px;
+    height: 140px;
+  }
 }
