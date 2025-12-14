@@ -133,61 +133,6 @@ router.post("/part3", upload.single("file"), async (req, res) => {
     });
   }
 });
-router.post("/part4", upload.single("file"), async (req, res) => {
-  try {
-    const examId = req.body.examId;
-    const host = `${req.protocol}://${req.get("host")}`;
 
-    const workbook = XLSX.read(req.file.buffer, { type: "buffer" });
-    const sheet = XLSX.utils.sheet_to_json(workbook.Sheets["Sheet1"]);
-
-    const inserted = [];
-
-    for (let i = 0; i < sheet.length; i++) {
-      const row = sheet[i];
-
-      if (!row || !row.audio || !row.question || !row.answer) continue;
-
-      const audioName = String(row.audio).trim();
-      const groupKey =
-        row.groupKey && String(row.groupKey).trim() !== ""
-          ? String(row.groupKey).trim()
-          : `P3-XLSX-${examId}-${i}`;
-
-      const A = row.A ?? row.a ?? "";
-      const B = row.B ?? row.b ?? "";
-      const C = row.C ?? row.c ?? "";
-      const D = row.D ?? row.d ?? "";
-
-      const opts = [A, B, C, D].map((x) => String(x || "").trim());
-
-      const ansLetter = String(row.answer).trim().toUpperCase();
-      const ansIndex = "ABCD".indexOf(ansLetter);
-      if (ansIndex === -1) {
-        throw new Error(`Dòng ${i + 1}: đáp án '${row.answer}' không hợp lệ`);
-      }
-
-      const q = await Question.create({
-        examId,
-        partNumber: 4,
-        groupKey,
-        audioUrls: [`${host}/uploads/audio/${audioName}`],
-        questionText: String(row.question).trim(),
-        options: opts,
-        answer: ansIndex,
-      });
-
-      inserted.push(q);
-    }
-
-    res.json({ success: true, count: inserted.length, data: inserted });
-  } catch (err) {
-    console.error("❌ Import Part 4 Excel lỗi:", err);
-    res.status(500).json({
-      success: false,
-      message: err.message || "Import Part 4 thất bại!",
-    });
-  }
-});
 
 export default router;
