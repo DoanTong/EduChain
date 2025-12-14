@@ -404,7 +404,8 @@ export const verifyCertificate = async (req, res) => {
         tokenId: cert.tokenId,
         txHash: cert.txHash,
         verifyUrl,
-        contentHash: cert.contentHash
+        contentHash: cert.contentHash,
+        
       }
     });
   } catch (err) {
