@@ -256,6 +256,9 @@ const qrBase64 = await QRCode.toDataURL(verifyUrl);
 
     await cert.save();
 
+// emit theo room userId (client phải join room userId)
+io.to(String(cert.user._id)).emit("new-notification", noti);
+
     return res.json({ success: true, cert });
 
   } catch (err) {
