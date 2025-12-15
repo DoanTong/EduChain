@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Leftbar from "../../../components/layout/leftbar/Leftbar";
 import Navbar from "../../../components/layout/topbar/Navbar";
 import API from "../../../api/http";
@@ -9,6 +11,8 @@ import { useSidebar } from "../../../context/SidebarContext";
 import { useAuth } from "../../../context/AuthContext";
 
 export default function ExamHistory() {
+  const navigate = useNavigate();
+
   const { collapsed } = useSidebar();
   const { user } = useAuth();
 
@@ -26,16 +30,21 @@ export default function ExamHistory() {
   const next = () => goTo(activeIndex + 1);
   const prev = () => goTo(activeIndex - 1);
 
+  // ✅ điều hướng sang ReviewHistory.jsx (đổi route nếu bạn đặt khác)
+  const goReview = (sessionId) => {
+    // ví dụ: /review-history/:sessionId
+    navigate(`/review-history/${sessionId}`);
+  };
+
   // Wheel scroll
-const wheel = (e) => {
-  // chặn cuộn trang khi đang lướt trong carousel
-  e.preventDefault();
-  e.stopPropagation();
+  const wheel = (e) => {
+    // chặn cuộn trang khi đang lướt trong carousel
+    e.preventDefault();
+    e.stopPropagation();
 
-  if (e.deltaY > 0) next();
-  else prev();
-};
-
+    if (e.deltaY > 0) next();
+    else prev();
+  };
 
   // Drag
   const down = (e) => {
@@ -78,7 +87,7 @@ const wheel = (e) => {
       w.removeEventListener("mouseup", up);
       w.removeEventListener("mouseleave", up);
     };
-  }, [sessions, activeIndex]);
+  }, [sessions, activeIndex]); // giữ nguyên dependencies như code bạn
 
   // Load DB
   useEffect(() => {
@@ -226,11 +235,20 @@ const wheel = (e) => {
                             </p>
                           </div>
 
-                          <a className="exh-btn" href={`/exam-session/${s.id}`}>
+                          {/* ✅ CHỈ SỬA NÚT NÀY: đi tới ReviewHistory.jsx */}
+                          <button
+                            type="button"
+                            className="exh-btn"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation(); // không làm ảnh hưởng click chọn card
+                              goReview(s.id);
+                            }}
+                          >
                             <Play size={18} />
                             Xem lại kỳ thi
                             <span className="exh-btn-shine" />
-                          </a>
+                          </button>
 
                           <div className="exh-card-glow" />
                         </div>
@@ -244,9 +262,7 @@ const wheel = (e) => {
             </>
           )}
 
-          <footer className="exh-footer">
-            © 2025 EduChain — Exam History
-          </footer>
+          <footer className="exh-footer">© 2025 EduChain — Exam History</footer>
         </div>
       </div>
     </>

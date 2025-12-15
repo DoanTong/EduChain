@@ -139,7 +139,9 @@ import ExamHistory from "./pages/exam/history/ExamHistory.jsx";
 // USER PAGES
 import Profile from "./pages/Profile/Profile.jsx";
 import MyCertificates from "./pages/Certificates/MyCertificates.jsx";
-
+import ReviewHistory from "./pages/exam/history/review/ReviewHistory.jsx"; 
+import ResultPart from "./pages/exam/history/resultpart/ResultReview.jsx"; 
+import ReviewHistoryStats from "./pages/exam/history/statpage/StatPage.jsx"; 
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -235,6 +237,9 @@ function AppRoutes() {
   }
 />
 <Route path="/verify/result/:contentHash" element={<Verify />} />
+<Route path="/review-history/:id" element={<ReviewHistory />} />
+<Route path="/review-history/:id/stats" element={<ReviewHistoryStats />} />
+<Route path="/result-part/:sessionId/:examId" element={<ResultPart />} />
 
 
       </Routes>
