@@ -5,27 +5,23 @@ import {
   getCertificates,
   getCertificatesByWallet,
   mintCertificate,
-  verifyCertificate     
+  verifyCertificate
 } from "../controllers/certificateController.js";
 
 const router = express.Router();
 
-// Tạo chứng chỉ (DB record)
-router.post("/", createCertificate);
-
-// Lấy certificate theo wallet
-router.get("/my", getCertificatesByWallet);
-
-// Admin xem chứng chỉ chờ duyệt
+// 1) Static routes FIRST
+router.get("/verify/:contentHash", verifyCertificate);
 router.get("/pending", getPendingCertificates);
 
-// Lấy tất cả
+// 2) My certificates
+router.get("/my", getCertificatesByWallet);
+
+// 3) CRUD / list
+router.post("/", createCertificate);
 router.get("/", getCertificates);
 
-// Mint NFT
+// 4) Dynamic routes LAST
 router.put("/:id/mint", mintCertificate);
-
-router.get("/verify/:contentHash", verifyCertificate);
-
 
 export default router;

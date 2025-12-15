@@ -71,3 +71,13 @@ test-output/
 # ==========================
 uploads/
 *.zip
+# =========================
+# ✅ Metadata (KHÔNG push lên GitHub)
+# - ignore toàn bộ thư mục metadata trong src
+# =========================
+server/src/metadata/
+server/src/metadata/**
+
+# Nếu metadata nằm chỗ khác thì thêm dòng tương tự, ví dụ:
+# metadata/
+# public/metadata/

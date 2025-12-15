@@ -479,11 +479,12 @@ function ReviewExamSession() {
             ))}
           </div>
 
-          <button className="btn-back-home" onClick={() => navigate("/")}>
-            Về trang chủ
-          </button>
+          
         </>
       )}
+      <button className="btn-back-home" onClick={() => navigate("/")}>
+            Về trang chủ
+          </button>
     </div>
   );
 }
